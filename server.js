@@ -1,4 +1,6 @@
 const express = require("express");
+//connected orm to the server
+const orm = require('./config/orm.js');
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -15,11 +17,20 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-const routes = require("./controllers/burgersController.js");
+//const routes = require("./controllers/burgersController.js");
 
-app.use(routes);
+//app.use(routes);
 
 app.listen(PORT, function() {
   console.log("Listening on port:%s", PORT);
+  orm.selectAll(
+    function (error, results){
+      console.log(results);
+    }
+  )
+  ;
+
 });
+
+
 
