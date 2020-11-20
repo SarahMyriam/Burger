@@ -28,9 +28,26 @@ app.listen(PORT, function() {
       console.log(results);
     }
   )
-  ;
+
+  orm.insertOne({
+    burger_name: "hamburger",
+    devoured: false
+  },
+    function (error, results){
+      console.log(results);
+    }
+  )
+
+  orm.updateOne({
+    burger_name: "bacon cheese burger",
+    devoured: true 
+  },
+  4,
+  function(error , results){
+    console.log(results);
+  }
+  );
 
 });
-
 
 
